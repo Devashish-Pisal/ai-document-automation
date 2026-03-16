@@ -1,0 +1,13 @@
+fastapi
+unicorn[standard]
+numpy
+pandas
+scikit-learn
+transformers
+torch
+pytesseract
+pillow
+pdf2image
+mlflow
+python-dotenv
+loguru
