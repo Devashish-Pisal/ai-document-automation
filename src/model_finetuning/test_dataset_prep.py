@@ -41,3 +41,11 @@ else:
         json.dump(data, f, indent=2)
         logger.success("TEST_DATA.json successfully created!")
     TEST_DATA = Dataset.from_dict(data)
+
+'''
+TEST DATASET:
+Dataset({
+    features: ['img_path', 'words', 'bboxes', 'labels'],
+    num_rows: 345
+})
+'''

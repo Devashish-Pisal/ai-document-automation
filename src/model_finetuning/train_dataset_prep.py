@@ -41,3 +41,10 @@ else:
         logger.success("TRAIN_DATA.json successfully created!")
     TRAIN_DATA = Dataset.from_dict(data)
 
+'''
+TRAIN DATASET:
+Dataset({
+    features: ['img_path', 'words', 'bboxes', 'labels'],
+    num_rows: 626
+})
+'''
