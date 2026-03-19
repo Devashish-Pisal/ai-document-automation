@@ -15,7 +15,7 @@ TRAIN_DATA = None
 if os.path.exists(os.path.join(PROCESSED_DATA_PATH, "TRAIN_DATA.json")):
     with open(os.path.join(PROCESSED_DATA_PATH, "TRAIN_DATA.json")) as f:
         TRAIN_DATA = Dataset.from_dict(json.load(f))
-        logger.success("TRAIN_DATA.json loaded!")
+        logger.info("TRAIN_DATA.json loaded!")
 else:
     data = {"img_path": [], "words":[], "bboxes":[], "labels":[]}
     for img_file_name in os.listdir(train_img_folder):
