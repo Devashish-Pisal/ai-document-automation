@@ -1,7 +1,3 @@
-from fontTools.misc.cython import returns
-from sklearn.externals.array_api_compat.dask.array import trunc
-
-from path_config import TRAIN_DATASET_PATH, TEST_DATASET_PATH
 from PIL import Image
 from loguru import logger
 import json
@@ -73,8 +69,8 @@ def preprocess(sample, label2id_mapping, processor):
     integer_labels = [label2id_mapping[label] for label in string_labels] # Covert the string labels into integer label, so model can process it.
     # Use the processor to tokenize the words
     encoding = processor(
-        image=image,
-        words=words,
+        image,
+        words,
         boxes=bboxes,
         word_labels=integer_labels,
         padding="max_length",
