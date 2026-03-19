@@ -6,3 +6,5 @@ __pycache__/
 /data/raw/SROIE2019/
 /data/processed/TEST_DATA.json
 /data/processed/TRAIN_DATA.json
+/data/processed/ENCODED_TRAIN_DATASET.pt
+/data/processed/ENCODED_TEST_DATASET.pt
