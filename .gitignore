@@ -1,6 +1,7 @@
 /.venv
 .idea
 __pycache__/
+samples/
 
 # Ignore raw & processed (json) dataset (only keep folder structure)
 /data/raw/SROIE2019/
@@ -8,6 +9,10 @@ __pycache__/
 /data/processed/TRAIN_DATA.json
 /data/processed/ENCODED_TRAIN_DATASET.pt
 /data/processed/ENCODED_TEST_DATASET.pt
+
+# Ignore model checkpoints and final model
+/model_data/checkpoint*/
+model_data/layoutlmv3-sroie-final/
 
 # Secrets
 .env
