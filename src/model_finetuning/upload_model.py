@@ -1,12 +1,11 @@
 from huggingface_hub import login, upload_folder
-from dotenv import load_dotenv
+from env_var_config import HUGGINGFACE_TOKEN
 from loguru import logger
 from path_config import MODEL_DATA_PATH
 import os
 
 
-load_dotenv()
-HUGGINGFACE_TOKEN = os.environ.get("HF_WRITE_TOKEN")
+
 if HUGGINGFACE_TOKEN:
     login(HUGGINGFACE_TOKEN)
     logger.info("Hugging Face authentication successful.")

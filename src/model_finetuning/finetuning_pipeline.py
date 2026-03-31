@@ -6,16 +6,14 @@ from datasets import Dataset
 from path_config import PROCESSED_DATA_PATH, MODEL_DATA_PATH
 from loguru import logger
 from huggingface_hub import login
-from dotenv import load_dotenv
+from env_var_config import HUGGINGFACE_TOKEN
 import numpy as np
 import os
 import torch
 import evaluate
 import time
 
-# Login to HF
-load_dotenv()
-HUGGINGFACE_TOKEN = os.environ.get("HF_WRITE_TOKEN")
+
 if HUGGINGFACE_TOKEN:
     login(HUGGINGFACE_TOKEN)
     logger.info("Hugging Face authentication successful.")
