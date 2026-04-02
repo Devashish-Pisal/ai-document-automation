@@ -30,7 +30,7 @@ class LayoutLMv3:
         with torch.no_grad:
             outputs = self.model(**encoding)
         predictions = torch.argmax(outputs.logits)
-
+        return predictions
 
 
     def _create_words_bboxes(self, ocr_data, img_width, img_height):
