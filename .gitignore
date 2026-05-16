@@ -16,3 +16,5 @@ model_data/layoutlmv3-sroie-final/
 
 # Secrets
 .env
+
+ai-invoice-automation-repo-kb.md
