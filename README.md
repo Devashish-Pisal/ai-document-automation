@@ -4,7 +4,7 @@
 
 ## Tech Stack & Tools
 - Python
-- REST APIs (Gemini or OpenAI)
+- REST APIs (Gemini API)
 - PostgreSQL
 - pytesseract
 - NLP 
