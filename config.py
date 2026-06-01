@@ -13,7 +13,8 @@ config = {
 
         "max_attempts_per_model": 3,
         "delay_between_consecutive_queries": 3, # in seconds
-    }
+    },
+    "max_workers": 4, # for parallel processing (should be at max equal to number of cpu cores)
 }
 
 
