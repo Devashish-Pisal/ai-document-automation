@@ -9,3 +9,5 @@ PROCESSED_DATA_PATH = DATA_DIR / "processed"
 PROMPTS_DIR = DATA_DIR / "prompts"
 
 MODEL_DATA_PATH = PROJECT_ROOT / "model_data"
+
+TEMP_FILES_DIR = DATA_DIR / "temp"
