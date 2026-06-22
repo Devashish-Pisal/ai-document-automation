@@ -6,9 +6,9 @@ from pathlib import Path
 from config import config
 from path_config import TEMP_FILES_DIR
 from pdf2image import convert_from_path
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ThreadPoolExecutor
 
-ocr_pool = ProcessPoolExecutor(max_workers=config["max_workers"])
+ocr_pool = ThreadPoolExecutor(max_workers=config["max_workers"])
 
 class OCREngine:
     def __init__(self, file_paths:list[Path]):
