@@ -32,8 +32,8 @@ class LayoutLMv3:
         predictions = torch.argmax(outputs.logits)
         return predictions
 
-
-    def _create_words_bboxes(self, ocr_data, img_width, img_height):
+    @staticmethod
+    def _create_words_bboxes(ocr_data, img_width, img_height):
         words = []
         boxes = []
         for i, word in enumerate(ocr_data["text"]):
