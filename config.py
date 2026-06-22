@@ -14,7 +14,7 @@ config = {
         "max_attempts_per_model": 3,
         "delay_between_consecutive_queries": 3, # in seconds
     },
-    "max_workers": 4, # for parallel processing (should be at max equal to number of cpu cores)
+    "max_workers": 4, # adjust to find correct tradeoff between memory usage and speed, if should not be more than total CPU cores
 }
 
 
