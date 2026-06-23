@@ -1,13 +1,10 @@
+import torch
 import threading
-
-from transformers import LayoutLMv3Processor, LayoutLMv3ForTokenClassification
+from PIL import Image
 from loguru import logger
 from config import config
-from path_config import MODEL_DATA_PATH, PROJECT_ROOT
-import torch
-import pytesseract
-from PIL import Image
-import torch
+from transformers import LayoutLMv3Processor, LayoutLMv3ForTokenClassification
+
 
 
 class LayoutLMv3:
@@ -40,11 +37,7 @@ class LayoutLMv3:
             ocr_data = item["ocr"]
             with Image.open(file_path) as image:
                 image = image.convert("RGB")
-                words, boxes = self._create_words_bboxes(
-                    ocr_data,
-                    image.width,
-                    image.height
-                )
+                words, boxes = self._create_words_bboxes(ocr_data,image.width,image.height)
                 images.append(image)
                 words_batch.append(words)
                 boxes_batch.append(boxes)
@@ -58,12 +51,8 @@ class LayoutLMv3:
         )
         with self.inference_lock:
             with torch.inference_mode():
-                outputs = self.model(
-                    **encoding
-                )
-        predictions = outputs.logits.argmax(
-            dim=-1
-        )
+                outputs = self.model(**encoding)
+        predictions = outputs.logits.argmax(dim=-1)
         # free tensors ASAP
         del encoding
         del outputs
@@ -84,9 +73,7 @@ class LayoutLMv3:
                 batch.clear()
         # remaining items
         if batch:
-            results.extend(
-                self.predict_batch(batch)
-            )
+            results.extend(self.predict_batch(batch))
         return results
 
 
