@@ -14,6 +14,10 @@ config = {
         "max_attempts_per_model": 3,
         "delay_between_consecutive_queries": 3, # in seconds
     },
+    "layout_lm_config": {
+        "torch_threads": 2, # number of threads used by torch
+        "batch_size": 4, # number of input images to process concurrently
+    },
     "max_workers": 4, # adjust to find correct tradeoff between memory usage and speed, if should not be more than total CPU cores
 }
 
