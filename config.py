@@ -3,8 +3,10 @@ config = {
     "use_layoutLM": True,
     "use_gemini": True,
     "use_regex": True,
+    "allow_pdf_inputs": False,
+    "allow_img_inputs": True,
     "gemini_config": {
-        "model_list": ["gemini-3-flash-preview", "gemini-2.5-flash", "gemini-3-flash-lite-preview", "gemini-2.5-flash-lite"],
+        "model_list": ["gemini-2.5-flash-lite", "gemini-3-flash-preview", "gemini-2.5-flash", "gemini-3-flash-lite-preview", "gemini-3.5-flash", "gemini-3.1-flash-lite"],
         "temperature": 0, # temperature: Controls randomness in generation (lower = more deterministic, higher = more creative)
         "top_p": 0.1, # top_p: Limits token selection to the smallest probability mass whose cumulative probability exceeds p
         "top_k": 1, # top_k: Restricts next-token selection to the top K most probable tokens
@@ -15,6 +17,7 @@ config = {
         "delay_between_consecutive_queries": 3, # in seconds
     },
     "layout_lm_config": {
+        "min_ocr_confidence": 30, # only consider the ocr output words which have confidence more than "min_ocr_confidence"
         "torch_threads": 2, # number of threads used by torch
         "batch_size": 4, # number of input images to process concurrently
     },
