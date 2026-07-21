@@ -45,6 +45,23 @@ class OCREngine:
         ocr = None
         with Image.open(file_path) as img:
             ocr =  pytesseract.image_to_data(img, output_type=pytesseract.Output.DICT)
+            """
+            EXAMPLE OUTPUT OF image_to_data:
+            {
+                'level': [1, 2, 3, 4, 5, 5],
+                'page_num': [1, 1, 1, 1, 1, 1],
+                'block_num': [0, 1, 1, 1, 1, 1],
+                'par_num': [0, 0, 1, 1, 1, 1],
+                'line_num': [0, 0, 0, 1, 1, 1],
+                'word_num': [0, 0, 0, 0, 1, 2],
+                'left': [0, 50, 50, 50, 50, 120],
+                'top': [0, 100, 100, 100, 100, 100],
+                'width': [800, 200, 200, 200, 60, 80],
+                'height': [600, 30, 30, 30, 30, 30],
+                'conf': [-1, -1, -1, -1, 95, 90],
+                'text': ['', '', '', '', 'Hello', 'World']
+            }
+            """
         if not ocr:
             logger.error(f"OCR data for file {file_path} is 'None'") # Check for None ocr values when doing model inference and skip those images
         return {
@@ -53,6 +70,36 @@ class OCREngine:
         }
 
 
+    @staticmethod
+    def image_to_data_to_string(ocr_data):
+        n = len(ocr_data["text"])
+        paragraphs = {}
+        order = []
+        for i in range(n):
+            text = ocr_data["text"][i].strip()
+            if not text:
+                continue
+            block = ocr_data["block_num"][i]
+            par = ocr_data["par_num"][i]
+            line = ocr_data["line_num"][i]
+            para_key = (block, par)
+            line_key = (block, par, line)
+            if para_key not in paragraphs:
+                paragraphs[para_key] = {}
+                order.append(para_key)
+            if line_key not in paragraphs[para_key]:
+                paragraphs[para_key][line_key] = []
+            paragraphs[para_key][line_key].append(text)
+        result = []
+        for para_key in order:
+            lines = paragraphs[para_key]
+            sorted_lines = sorted(lines.items(), key=lambda x: x[0][2])
+            para_text = "\n".join(
+                " ".join(words)
+                for _, words in sorted_lines
+            )
+            result.append(para_text)
+        return "\n\n".join(result)
 
 
 
