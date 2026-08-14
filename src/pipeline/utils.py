@@ -8,7 +8,7 @@ def get_formated_prompt(ocr_data: str):
         with open(path, "r", encoding="utf-8") as file:
             user_prompt = file.read()
         if user_prompt:
-            user_prompt.format(ocr_data)
+            user_prompt = user_prompt.format(ocr_data=ocr_data)
             return user_prompt
         else:
             raise ValueError("Unable to read prompt from file 'user_prompt.txt'")
